@@ -3,7 +3,10 @@ package example.project.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import java.util.Arrays;
+
+import static java.lang.Math.sqrt;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestScenario {
     
@@ -25,10 +28,19 @@ public class TestScenario {
 
     @Test
     public void testEquality() {
-        fail();
+//        fail();
         // delete the above line and implement this properly to test if two scenarios are equal.
         // Let's define our equality as follows:
         // (1) roadType and weatherCondition must be the same.
+        assertEquals(s1.roadType, s2.roadType);
+        assertEquals(s1.weatherCondition, s2.weatherCondition);
         // (2) If Euclidean distance between the egoCar and car-in-front is less than 0.05, then they are equal in terms of car positions.
+        float xPos = s2.initEgoCarPos.get(0) - s1.initEgoCarPos.get(0);
+        float yPos = s2.initEgoCarPos.get(1) - s1.initEgoCarPos.get(1);
+        double dist = sqrt(xPos*xPos + yPos*yPos);
+        assertTrue(dist < 0.05);
+
+
+
     }
 }
